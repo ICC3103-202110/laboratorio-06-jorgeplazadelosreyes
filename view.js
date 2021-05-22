@@ -51,12 +51,24 @@ function inputForm(model){
 
 function listForm1(model,message){
     const {leftUnit} = model
-    const choices = ['Celsius', 'Farenheit', 'Kelvin']
+    const choices = ['Celsius', 'Fahrenheit', 'Kelvin']
     return inquirer.prompt({
-        name: 'list1',
+        name: 'unit1',
         type: 'list',
         message: message,
         default: leftUnit,
+        choices: choices
+    })
+}
+
+function listForm3(model,message){
+    const {rightUnit} = model
+    const choices = ['Celsius', 'Fahrenheit', 'Kelvin']
+    return inquirer.prompt({
+        name: 'unit2',
+        type: 'list',
+        message: message,
+        default: rightUnit,
         choices: choices
     })
 }
@@ -83,5 +95,6 @@ module.exports = {
     view, 
     listForm1,
     inputForm,
-    listForm2
+    listForm2,
+    listForm3
 }
