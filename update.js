@@ -26,11 +26,6 @@ function define(unit1,unit2){
     if (unit1 === 'Kelvin' && unit2 === 'Fahrenheit'){
         return 'KtoF'
     }
-
-    
-    
-
-
 }
 
 function celsius_to_fahrenheit(value){

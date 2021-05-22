@@ -17,20 +17,21 @@ async function app(state,view){
             model.actual = 'left'
         }
         const {unit1} = await listForm1(model,'From?')
-        const {value} = parseFloat(await inputForm(model))
+        const {value} = await inputForm(model)
         const {unit2} = await listForm3(model,'To?')
+        const temperature = parseFloat(value)
 
         if (model.actual === 'left'){
-            model.leftValue = value
+            model.leftValue = temperature
             const transformate = define(unit1,unit2)
-            model.rightValue = FUNCTIONS[transformate](value)
+            model.rightValue = parseFloat(FUNCTIONS[transformate](temperature))
             model.leftUnit = unit1
             model.rightUnit = unit2
         }
         else{
-            model.rightValue = value
-            const transformate = define(unit2,unit1)
-            model.leftValue = FUNCTIONS[transformate](value)
+            model.rightValue = temperature
+            const transformate = define(unit1,unit2)
+            model.leftValue = parseFloat(FUNCTIONS[transformate](temperature))
             model.leftUnit = unit2
             model.rightUnit = unit1
         }
