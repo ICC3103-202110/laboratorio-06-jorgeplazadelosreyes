@@ -4,7 +4,8 @@ const FUNCTIONS = {
     'FtoC': fahrenheit_to_celsius,
     'FtoK': fahrenheit_to_kelvin,
     'KtoC': kelvin_to_celsius,
-    'KtoF': kelvin_to_fahrenheit
+    'KtoF': kelvin_to_fahrenheit,
+    'same': same
 }
 
 function define(unit1,unit2){
@@ -25,6 +26,9 @@ function define(unit1,unit2){
     }
     if (unit1 === 'Kelvin' && unit2 === 'Fahrenheit'){
         return 'KtoF'
+    }
+    if (unit1 === unit2){
+        return 'same'
     }
 }
 
@@ -50,6 +54,10 @@ function kelvin_to_celsius(value){
 
 function kelvin_to_fahrenheit(value){
     return ((value-273.15)*(9/5)) +32
+}
+
+function same(value){
+    return value
 }
 
 module.exports = {
