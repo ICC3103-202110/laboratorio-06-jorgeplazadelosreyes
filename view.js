@@ -14,29 +14,43 @@ function getTitle(){
     )
 }
 
-function input1(model){
-    const{leftUnit} = model
-    const message = 'Unit to convert from?(Celsius/Farenheit/Kelvin): '
+function listForm2(){
+    const message = "Left temperature is source?"
+    choices = ['Yes','No']
     return inquirer.prompt([
         {
-            name: 'input1',
-            type: 'input',
+            name: 'actual',
+            type: 'list',
             message: message,
-            default: leftUnit,
-            validate: function(value){
-                if(value === 'Celsius' || value === 'Farenheit' || value === "Kelvin"){
-                    return true
-                } else {
-                    return 'Enter a valid unit(Celsius/Farenheit/Kelvin)'
-                }
-            }
+            default: "Yes",
+            choices: choices
         }
     ])
 }
 
-function listForm1(model){
+function inputForm(model){
+    const actual = model.actual
+    let Value;
+    if (actual === 'left'){
+        Value = model.leftValue
+    }
+    else{
+        Value = model.rightValue
+    }
+    const numb = Value
+    const message = 'Value?'
+    return inquirer.prompt([
+        {
+            name: 'value',
+            type: 'input',
+            message: message,
+            default: numb
+        }
+    ])
+}
+
+function listForm1(model,message){
     const {leftUnit} = model
-    const message = 'Unit to convert from?'
     const choices = ['Celsius', 'Farenheit', 'Kelvin']
     return inquirer.prompt({
         name: 'list1',
@@ -47,18 +61,6 @@ function listForm1(model){
     })
 }
 
-function listForm2(model,leftUnit){
-    const {rightUnit} = model
-    const message = 'To?'
-    const choices = ['Celsius', 'Farenheit', 'Kelvin']
-    return inquirer.prompt({
-        name: 'list2',
-        type: 'list',
-        message: message,
-        default: rightUnit,
-        choices: choices,
-    })
-}
 
 function getTable(model){
     const {leftValue,leftUnit,rightValue,rightUnit} = model
@@ -66,11 +68,10 @@ function getTable(model){
         {"Left value": leftValue,
         "Left unit": leftUnit,
         "Right value": rightValue,
-        "Right Unit": rightUnit}
+        "Right unit": rightUnit}
     ]
 }
 
-// Get actual console view
 function view(model){
     return {
         title: getTitle(),
@@ -81,6 +82,6 @@ function view(model){
 module.exports = {
     view, 
     listForm1,
-    listForm2,
-    input1
+    inputForm,
+    listForm2
 }

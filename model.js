@@ -1,8 +1,9 @@
 initModel = {
     leftValue: 0,
-    leftUnit: "Celsius",
+    leftUnit: 'Celsius',
     rightValue: 32,
-    rightUnit: "Farenheit",
+    rightUnit: 'Farenheit',
+    actual: 'left',
 }
 
 module.exports = {
